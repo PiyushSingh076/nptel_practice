@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="assignments-list">
+    <h2>Available Assignments</h2>
+    
+    {% for assignment_id, assignment in assignments.items() %}
+    <div class="assignment-card">
+        <h3>{{ assignment.title }}</h3>
+        <p>{{ assignment.questions|length }} questions</p>
+        <a href="{{ url_for('show_assignment', assignment_id=assignment_id) }}" class="btn">
+            Start Practice
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
