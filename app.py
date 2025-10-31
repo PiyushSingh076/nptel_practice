@@ -25,7 +25,7 @@ def submit_assignment(assignment_id):
     
     correct_count, total_questions = calculate_score(assignment_id, user_answers)
     
-    # Store results in URL parameters instead of session
+    # Pass results as URL parameters
     return redirect(url_for('show_results', 
                           assignment_id=assignment_id,
                           correct=correct_count, 
@@ -52,5 +52,10 @@ def show_results(assignment_id):
                          assignment_id=assignment_id,
                          score=score)
 
+# Health check endpoint for deployment
+@app.route('/health')
+def health():
+    return 'OK'
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
